@@ -14,6 +14,7 @@
 		8BC68A6D2437BF2500BA7C63 /* Retrace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A6B2437BF2500BA7C63 /* Retrace.xcdatamodeld */; };
 		8BC68A6F2437BF2500BA7C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A6E2437BF2500BA7C63 /* Assets.xcassets */; };
 		8BC68A722437BF2500BA7C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A702437BF2500BA7C63 /* LaunchScreen.storyboard */; };
+		8BD7C03F2437D640006FDC54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C03E2437D640006FDC54 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		8BC68A6E2437BF2500BA7C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BC68A712437BF2500BA7C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BC68A732437BF2500BA7C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8BD7C03E2437D640006FDC54 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 			children = (
 				8BC68A6E2437BF2500BA7C63 /* Assets.xcassets */,
 				8BC68A702437BF2500BA7C63 /* LaunchScreen.storyboard */,
+				8BD7C03E2437D640006FDC54 /* Constants.swift */,
 			);
 			path = Supporting;
 			sourceTree = "<group>";
@@ -173,6 +176,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8BD7C03F2437D640006FDC54 /* Constants.swift in Sources */,
 				8BC68A672437BF2500BA7C63 /* CategoryViewController.swift in Sources */,
 				8BC68A632437BF2500BA7C63 /* AppDelegate.swift in Sources */,
 				8BC68A6D2437BF2500BA7C63 /* Retrace.xcdatamodeld in Sources */,
