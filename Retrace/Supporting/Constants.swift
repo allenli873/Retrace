@@ -9,6 +9,13 @@
 import UIKit
 
 struct K {
-    static let categoryIdentifier = "categoryCell"
+    struct CellIdentifiers {
+        static let categoryIdentifier = "categoryCell"
+        static let itemIdentifier = "itemCell"
+    }
+    struct SegueIdentifiers {
+        static let itemsSegue = "goToItems"
+        static let makerSegue = "goToMaker"
+    }
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 }

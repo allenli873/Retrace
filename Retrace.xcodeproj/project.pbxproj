@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B21438E2437E11C00A88066 /* MakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21438D2437E11C00A88066 /* MakerViewController.swift */; };
 		8BC68A632437BF2500BA7C63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A622437BF2500BA7C63 /* AppDelegate.swift */; };
 		8BC68A652437BF2500BA7C63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A642437BF2500BA7C63 /* SceneDelegate.swift */; };
 		8BC68A672437BF2500BA7C63 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A662437BF2500BA7C63 /* CategoryViewController.swift */; };
@@ -15,9 +16,11 @@
 		8BC68A6F2437BF2500BA7C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A6E2437BF2500BA7C63 /* Assets.xcassets */; };
 		8BC68A722437BF2500BA7C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A702437BF2500BA7C63 /* LaunchScreen.storyboard */; };
 		8BD7C03F2437D640006FDC54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C03E2437D640006FDC54 /* Constants.swift */; };
+		8BD7C0412437DA87006FDC54 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C0402437DA87006FDC54 /* ItemViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8B21438D2437E11C00A88066 /* MakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerViewController.swift; sourceTree = "<group>"; };
 		8BC68A5F2437BF2500BA7C63 /* Retrace.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Retrace.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8BC68A622437BF2500BA7C63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8BC68A642437BF2500BA7C63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -28,6 +31,7 @@
 		8BC68A712437BF2500BA7C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BC68A732437BF2500BA7C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD7C03E2437D640006FDC54 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		8BD7C0402437DA87006FDC54 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +95,8 @@
 			isa = PBXGroup;
 			children = (
 				8BC68A662437BF2500BA7C63 /* CategoryViewController.swift */,
+				8BD7C0402437DA87006FDC54 /* ItemViewController.swift */,
+				8B21438D2437E11C00A88066 /* MakerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -179,8 +185,10 @@
 				8BD7C03F2437D640006FDC54 /* Constants.swift in Sources */,
 				8BC68A672437BF2500BA7C63 /* CategoryViewController.swift in Sources */,
 				8BC68A632437BF2500BA7C63 /* AppDelegate.swift in Sources */,
+				8B21438E2437E11C00A88066 /* MakerViewController.swift in Sources */,
 				8BC68A6D2437BF2500BA7C63 /* Retrace.xcdatamodeld in Sources */,
 				8BC68A652437BF2500BA7C63 /* SceneDelegate.swift in Sources */,
+				8BD7C0412437DA87006FDC54 /* ItemViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

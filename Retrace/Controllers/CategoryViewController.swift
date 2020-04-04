@@ -74,9 +74,23 @@ extension CategoryViewController {
         return categories.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.categoryIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifiers.categoryIdentifier, for: indexPath)
         cell.textLabel?.text = categories[indexPath.row].name
         return cell
     }
 }
 
+//MARK: - Table View Delegate Methods
+
+extension CategoryViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: K.SegueIdentifiers.itemsSegue, sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! ItemViewController
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            return
+        }
+        destinationVC.selectedCategory = categories[indexPath.row]
+    }
+}
