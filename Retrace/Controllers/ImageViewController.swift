@@ -11,20 +11,15 @@ import UIKit
 class ImageViewController: UIViewController {
     
     @IBOutlet weak var displayImage: UIImageView!
-    var incomingItem: Item? {
-        didSet {
-            // should definitely have an image name
-            getImage(imageName: incomingItem!.imageName!)
-        }
-    }
+    var incomingItem: Item!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        getImage(imagePath: incomingItem.imagePath!)
     }
     
-    func getImage(imageName: String) {
+    func getImage(imagePath: String) {
         let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
         
         if fileManager.fileExists(atPath: imagePath) {
             displayImage.image = UIImage(contentsOfFile: imagePath)

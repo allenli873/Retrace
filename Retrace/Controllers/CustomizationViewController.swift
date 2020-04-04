@@ -13,16 +13,16 @@ class CustomizationViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     
+    var imagePath: String!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.delegate = self
-        getImage(imageName: "test.png")
+        getImage(imagePath: imagePath)
     }
     
-    func getImage(imageName: String) {
+    func getImage(imagePath: String) {
         let fileManager = FileManager.default
-        let imagePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(imageName)
-        
         if fileManager.fileExists(atPath: imagePath) {
             imageView.image = UIImage(contentsOfFile: imagePath)
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
@@ -42,7 +42,7 @@ class CustomizationViewController: UIViewController {
         
         let newItem = Item(context: K.context)
         newItem.name = textField.text!
-        newItem.imageName = "test.png"
+        newItem.imagePath = imagePath
         itemVC.incomingItem = newItem
         navigationController?.popToViewController(itemVC, animated: true)
     }

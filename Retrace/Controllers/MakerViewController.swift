@@ -11,6 +11,7 @@ import UIKit
 class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     @IBOutlet weak var imageView: UIImageView!
     var imagePickerController: UIImagePickerController!
+    var fileURLPath: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +39,7 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileManager = FileManager.default
         let fileURL = documentsDirectory.appendingPathComponent(imageName)
-        
+        fileURLPath = fileURL.path
         guard let data = imageView.image?.pngData() else { return }
         
         if fileManager.fileExists(atPath: fileURL.path) {
@@ -60,8 +61,8 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
         performSegue(withIdentifier: K.SegueIdentifiers.customizerSegue, sender: self)
     }
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        let destinationVC = segue.destination as! CustomizationViewController
-//        destinationVC.imageView.image = imageView.image
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination as! CustomizationViewController
+        destinationVC.imagePath = fileURLPath
+    }
 }
