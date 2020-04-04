@@ -13,7 +13,17 @@ class ItemViewController: UITableViewController {
 
     var selectedCategory: Category? {
         didSet {
+            print("New selectedCategory didSet")
             loadItems()
+        }
+    }
+    
+    var incomingItem: Item? {
+        didSet {
+            print("New incomingItem didSet")
+            incomingItem?.parentCategory = selectedCategory
+            items.append(incomingItem!)
+            saveItems()
         }
     }
     var items = [Item]()
@@ -38,6 +48,30 @@ class ItemViewController: UITableViewController {
         return items.count
     }
 
+}
+
+//MARK: - UITableViewDelegate
+
+extension ItemViewController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: K.SegueIdentifiers.imageSegue, sender: self)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // currently not preparing anything for the item segue
+        if segue.identifier == K.SegueIdentifiers.makerSegue {
+            return
+        }
+        
+        // Segue to where we can view the image
+        if segue.identifier == K.SegueIdentifiers.imageSegue {
+            let destinationVC = segue.destination as! ImageViewController
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                print("error: no index path found")
+                return
+            }
+            destinationVC.incomingItem = items[indexPath.row]
+        }
+    }
 }
 
 //MARK: - Updating Data

@@ -5,11 +5,12 @@
         <relationship name="items" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Item" inverseName="parentCategory" inverseEntity="Item"/>
     </entity>
     <entity name="Item" representedClassName=".Item" syncable="YES" codeGenerationType="class">
+        <attribute name="imageName" attributeType="String"/>
         <attribute name="name" attributeType="String"/>
         <relationship name="parentCategory" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="items" inverseEntity="Category"/>
     </entity>
     <elements>
         <element name="Category" positionX="-72.5" positionY="17.08984375" width="128" height="73"/>
-        <element name="Item" positionX="126.83984375" positionY="14.34765625" width="128" height="73"/>
+        <element name="Item" positionX="126.83984375" positionY="14.34765625" width="128" height="88"/>
     </elements>
 </model>

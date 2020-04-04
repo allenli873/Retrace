@@ -16,6 +16,8 @@ struct K {
     struct SegueIdentifiers {
         static let itemsSegue = "goToItems"
         static let makerSegue = "goToMaker"
+        static let customizerSegue = "goToCustomizer"
+        static let imageSegue = "goToImageView"
     }
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 }

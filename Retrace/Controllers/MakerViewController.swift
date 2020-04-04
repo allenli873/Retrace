@@ -16,17 +16,52 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
         super.viewDidLoad()
         
     }
+    
+    //MARK: - Image Taking and Saving
     @IBAction func onPhotoButton(_ sender: UIButton) {
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .camera
         present(imagePickerController, animated: true, completion: nil)
     }
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePickerController.dismiss(animated: true, completion: nil)
         imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
     }
+    
     @IBAction func onSaveButton(_ sender: UIButton) {
-        
+        saveImage(imageName: "test.png")
     }
+    
+    func saveImage(imageName: String) {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
+        let fileManager = FileManager.default
+        let fileURL = documentsDirectory.appendingPathComponent(imageName)
+        
+        guard let data = imageView.image?.pngData() else { return }
+        
+        if fileManager.fileExists(atPath: fileURL.path) {
+            do {
+                try fileManager.removeItem(atPath: fileURL.path)
+            } catch let removeError {
+                print("couldn't remove file at path, \(removeError)")
+                return
+            }
+        }
+        print(fileURL)
+        do {
+            try data.write(to: fileURL)
+        } catch let error {
+            print("error saving file with error", error)
+            return
+        }
+        
+        performSegue(withIdentifier: K.SegueIdentifiers.customizerSegue, sender: self)
+    }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let destinationVC = segue.destination as! CustomizationViewController
+//        destinationVC.imageView.image = imageView.image
+//    }
 }
