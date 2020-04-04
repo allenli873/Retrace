@@ -13,18 +13,20 @@ class CustomizationViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textField: UITextField!
     
-    var imagePath: String!
+    var imageName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textField.delegate = self
-        getImage(imagePath: imagePath)
+        getImage(with: imageName)
     }
     
-    func getImage(imagePath: String) {
+    func getImage(with imageName: String) {
+        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileManager = FileManager.default
-        if fileManager.fileExists(atPath: imagePath) {
-            imageView.image = UIImage(contentsOfFile: imagePath)
+        let fileURL = documentsDirectory.appendingPathComponent(imageName)
+        if fileManager.fileExists(atPath: fileURL.path) {
+            imageView.image = UIImage(contentsOfFile: fileURL.path)
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
         } else {
             print("Error: no image found")
@@ -42,7 +44,7 @@ class CustomizationViewController: UIViewController {
         
         let newItem = Item(context: K.context)
         newItem.name = textField.text!
-        newItem.imagePath = imagePath
+        newItem.imageName = imageName
         itemVC.incomingItem = newItem
         navigationController?.popToViewController(itemVC, animated: true)
     }
