@@ -20,4 +20,5 @@ struct K {
         static let imageSegue = "goToImageView"
     }
     static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    static let imageCountKey = "countKey"
 }

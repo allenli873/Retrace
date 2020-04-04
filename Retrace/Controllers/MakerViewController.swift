@@ -12,10 +12,13 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
     @IBOutlet weak var imageView: UIImageView!
     var imagePickerController: UIImagePickerController!
     var fileURLPath: String!
+    let defaults = UserDefaults.standard
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        if defaults.object(forKey: K.imageCountKey) == nil {
+            defaults.set(0, forKey: K.imageCountKey)
+        }
     }
     
     //MARK: - Image Taking and Saving
@@ -32,7 +35,9 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
     }
     
     @IBAction func onSaveButton(_ sender: UIButton) {
-        saveImage(imageName: "test.png")
+        let currImageCount = defaults.integer(forKey: K.imageCountKey)
+        saveImage(imageName: "image_\(currImageCount).png")
+        defaults.set(currImageCount + 1, forKey: K.imageCountKey)
     }
     
     func saveImage(imageName: String) {

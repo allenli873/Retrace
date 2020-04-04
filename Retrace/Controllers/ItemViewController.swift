@@ -21,15 +21,15 @@ class ItemViewController: UITableViewController {
     var incomingItem: Item? {
         didSet {
             print("New incomingItem didSet")
-            incomingItem?.parentCategory = selectedCategory
+            incomingItem!.parentCategory = selectedCategory
             items.append(incomingItem!)
-            saveItems()
+            self.saveItems()
         }
     }
     var items = [Item]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("View Loaded")
         self.tableView.keyboardDismissMode = .onDrag
     }
 
@@ -92,7 +92,7 @@ extension ItemViewController {
         if predicate != nil {
             predicates.append(predicate!)
         }
-        
+
         predicates.append(NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!))
         let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
         request.predicate = compoundPredicate
@@ -102,6 +102,7 @@ extension ItemViewController {
         } catch {
             print("Error fetching data from context \(error)")
         }
+        print(items)
     }
 }
 
@@ -119,7 +120,7 @@ extension ItemViewController: UISearchBarDelegate {
         var predicate: NSPredicate? = nil
         
         if searchText.count != 0 {
-            predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+            predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
         }
         
         loadItems(with: request, predicate: predicate)
