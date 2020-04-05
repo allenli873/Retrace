@@ -21,17 +21,24 @@ class CustomizationViewController: UIViewController {
         getImage(with: imageName)
     }
     
+    //MARK: - Getting the just taken image from the documents folder
+    
     func getImage(with imageName: String) {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileManager = FileManager.default
-        let fileURL = documentsDirectory.appendingPathComponent(imageName)
-        if fileManager.fileExists(atPath: fileURL.path) {
-            imageView.image = UIImage(contentsOfFile: fileURL.path)
+        let path = R.getFilePath(with: imageName)
+        if path.count == 0 {
+            return
+        }
+        if fileManager.fileExists(atPath: path) {
+            imageView.image = UIImage(contentsOfFile: path)
             imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
         } else {
             print("Error: no image found")
         }
     }
+    
+    //MARK: - Segue from when item is saved
+    
     @IBAction func saveItemPressed(_ sender: UIButton) {
         if textField.text?.count == 0 {
             return
@@ -49,6 +56,8 @@ class CustomizationViewController: UIViewController {
         navigationController?.popToViewController(itemVC, animated: true)
     }
 }
+
+//MARK: - UITextFieldDelegate
 
 extension CustomizationViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

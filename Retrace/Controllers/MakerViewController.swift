@@ -21,7 +21,8 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
         }
     }
     
-    //MARK: - Image Taking and Saving
+    //MARK: - Image Taking
+    
     @IBAction func onPhotoButton(_ sender: UIButton) {
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
@@ -33,6 +34,8 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
         imagePickerController.dismiss(animated: true, completion: nil)
         imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
     }
+    
+    //MARK: - Image Saving
     
     @IBAction func onSaveButton(_ sender: UIButton) {
         let currImageCount = defaults.integer(forKey: K.imageCountKey)
@@ -55,11 +58,11 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
                 return
             }
         }
-        print(fileURL)
+        
         do {
             try data.write(to: fileURL)
         } catch let error {
-            print("error saving file with error", error)
+            print("Error saving file, \(error)")
             return
         }
         

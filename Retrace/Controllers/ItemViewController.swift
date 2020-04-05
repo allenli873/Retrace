@@ -9,27 +9,30 @@
 import UIKit
 import CoreData
 
-class ItemViewController: UITableViewController {
+//MARK: - Item View Controller: Tabulates Items
 
+class ItemViewController: UITableViewController {
+    
+    var items = [Item]()
+    
+    // from category view controller: loads items into items array
     var selectedCategory: Category? {
         didSet {
-            print("New selectedCategory didSet")
             loadItems()
         }
     }
     
+    // incoming item from ImageViewController
     var incomingItem: Item? {
         didSet {
-            print("New incomingItem didSet")
             incomingItem!.parentCategory = selectedCategory
             items.append(incomingItem!)
             self.saveItems()
         }
     }
-    var items = [Item]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("View Loaded")
         self.tableView.keyboardDismissMode = .onDrag
     }
 
@@ -102,7 +105,6 @@ extension ItemViewController {
         } catch {
             print("Error fetching data from context \(error)")
         }
-        print(items)
     }
 }
 

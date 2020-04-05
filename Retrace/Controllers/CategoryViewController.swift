@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+//MARK: - Category View Controller: Tabulates the categories
+
 class CategoryViewController: UITableViewController {
 
     var categories = [Category]()
@@ -18,6 +20,8 @@ class CategoryViewController: UITableViewController {
         // Do any additional setup after loading the view.
         loadData()
     }
+    
+    //MARK: - Add Button Pressed: Segue to Item View Controller
     
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         var textField = UITextField()

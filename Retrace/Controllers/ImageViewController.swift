@@ -18,15 +18,19 @@ class ImageViewController: UIViewController {
         getImage(with: incomingItem.imageName!)
     }
     
+    //MARK: - Image Loading
+    
     func getImage(with imageName: String) {
-        guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileManager = FileManager.default
-        let fileURL = documentsDirectory.appendingPathComponent(imageName)
-        if fileManager.fileExists(atPath: fileURL.path) {
-            displayImage.image = UIImage(contentsOfFile: fileURL.path)
+        let path = R.getFilePath(with: imageName)
+        if path.count == 0 {
+            return
+        }
+        if fileManager.fileExists(atPath: path) {
+            displayImage.image = UIImage(contentsOfFile: path)
             displayImage.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
         } else {
-            print("Error: no image found imageviewcontroller")
+            print("Error: no image found")
         }
     }
 }
