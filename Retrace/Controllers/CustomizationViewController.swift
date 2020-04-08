@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class CustomizationViewController: UIViewController {
     
@@ -49,7 +50,7 @@ class CustomizationViewController: UIViewController {
             return
         }
         
-        let newItem = Item(context: K.context)
+        let newItem = Item()
         newItem.name = textField.text!
         newItem.imageName = imageName
         itemVC.incomingItem = newItem

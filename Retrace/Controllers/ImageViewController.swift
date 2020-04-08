@@ -15,7 +15,7 @@ class ImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImage(with: incomingItem.imageName!)
+        getImage(with: incomingItem.imageName)
     }
     
     //MARK: - Image Loading

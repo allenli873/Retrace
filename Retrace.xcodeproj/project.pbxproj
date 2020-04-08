@@ -3,10 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B1136D0243E7C1300997EA9 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1136CF243E7C1300997EA9 /* Category.swift */; };
+		8B1136D2243E7C2100997EA9 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1136D1243E7C2100997EA9 /* Item.swift */; };
 		8B21438E2437E11C00A88066 /* MakerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B21438D2437E11C00A88066 /* MakerViewController.swift */; };
 		8B68983E2438124C0030B9D1 /* CustomizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68983D2438124C0030B9D1 /* CustomizationViewController.swift */; };
 		8B6898402438313B0030B9D1 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B68983F2438313B0030B9D1 /* ImageViewController.swift */; };
@@ -15,7 +17,6 @@
 		8BC68A652437BF2500BA7C63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A642437BF2500BA7C63 /* SceneDelegate.swift */; };
 		8BC68A672437BF2500BA7C63 /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A662437BF2500BA7C63 /* CategoryViewController.swift */; };
 		8BC68A6A2437BF2500BA7C63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A682437BF2500BA7C63 /* Main.storyboard */; };
-		8BC68A6D2437BF2500BA7C63 /* Retrace.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8BC68A6B2437BF2500BA7C63 /* Retrace.xcdatamodeld */; };
 		8BC68A6F2437BF2500BA7C63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A6E2437BF2500BA7C63 /* Assets.xcassets */; };
 		8BC68A722437BF2500BA7C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A702437BF2500BA7C63 /* LaunchScreen.storyboard */; };
 		8BD7C03F2437D640006FDC54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C03E2437D640006FDC54 /* Constants.swift */; };
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		28A489020B235BEDE19D19AB /* Pods-Retrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Retrace.release.xcconfig"; path = "Target Support Files/Pods-Retrace/Pods-Retrace.release.xcconfig"; sourceTree = "<group>"; };
 		6FD1BA474A0AE8C583A068E7 /* Pods-Retrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Retrace.debug.xcconfig"; path = "Target Support Files/Pods-Retrace/Pods-Retrace.debug.xcconfig"; sourceTree = "<group>"; };
+		8B1136CF243E7C1300997EA9 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		8B1136D1243E7C2100997EA9 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		8B21438D2437E11C00A88066 /* MakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerViewController.swift; sourceTree = "<group>"; };
 		8B68983D2438124C0030B9D1 /* CustomizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationViewController.swift; sourceTree = "<group>"; };
 		8B68983F2438313B0030B9D1 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -35,7 +38,6 @@
 		8BC68A642437BF2500BA7C63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8BC68A662437BF2500BA7C63 /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		8BC68A692437BF2500BA7C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		8BC68A6C2437BF2500BA7C63 /* Retrace.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Retrace.xcdatamodel; sourceTree = "<group>"; };
 		8BC68A6E2437BF2500BA7C63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8BC68A712437BF2500BA7C63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8BC68A732437BF2500BA7C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,7 +64,6 @@
 				6FD1BA474A0AE8C583A068E7 /* Pods-Retrace.debug.xcconfig */,
 				28A489020B235BEDE19D19AB /* Pods-Retrace.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -109,7 +110,8 @@
 		8BC68A7A2437D28500BA7C63 /* Data Model */ = {
 			isa = PBXGroup;
 			children = (
-				8BC68A6B2437BF2500BA7C63 /* Retrace.xcdatamodeld */,
+				8B1136CF243E7C1300997EA9 /* Category.swift */,
+				8B1136D1243E7C2100997EA9 /* Item.swift */,
 			);
 			path = "Data Model";
 			sourceTree = "<group>";
@@ -264,12 +266,13 @@
 				8B6898402438313B0030B9D1 /* ImageViewController.swift in Sources */,
 				8BC68A672437BF2500BA7C63 /* CategoryViewController.swift in Sources */,
 				8BC68A632437BF2500BA7C63 /* AppDelegate.swift in Sources */,
+				8B1136D2243E7C2100997EA9 /* Item.swift in Sources */,
 				8B21438E2437E11C00A88066 /* MakerViewController.swift in Sources */,
 				8B68983E2438124C0030B9D1 /* CustomizationViewController.swift in Sources */,
-				8BC68A6D2437BF2500BA7C63 /* Retrace.xcdatamodeld in Sources */,
 				8BB454DA243944F2009B9B73 /* ReusableMethods.swift in Sources */,
 				8BC68A652437BF2500BA7C63 /* SceneDelegate.swift in Sources */,
 				8BD7C0412437DA87006FDC54 /* ItemViewController.swift in Sources */,
+				8B1136D0243E7C1300997EA9 /* Category.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -469,19 +472,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCVersionGroup section */
-		8BC68A6B2437BF2500BA7C63 /* Retrace.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				8BC68A6C2437BF2500BA7C63 /* Retrace.xcdatamodel */,
-			);
-			currentVersion = 8BC68A6C2437BF2500BA7C63 /* Retrace.xcdatamodel */;
-			path = Retrace.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = 8BC68A572437BF2500BA7C63 /* Project object */;
 }

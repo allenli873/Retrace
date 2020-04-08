@@ -19,8 +19,6 @@ struct K {
         static let customizerSegue = "goToCustomizer"
         static let imageSegue = "goToImageView"
     }
-    // shared context for CoreData
-    static let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     // persisted UserDefaults
     static let imageCountKey = "countKey"
     // documents directory

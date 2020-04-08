@@ -7,13 +7,15 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 //MARK: - Category View Controller: Tabulates the categories
 
 class CategoryViewController: UITableViewController {
 
-    var categories = [Category]()
+    let realm = try! Realm()
+    
+    var categories: Results<Category>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,10 +39,10 @@ class CategoryViewController: UITableViewController {
                 return
             }
             
-            let newCategory = Category(context: K.context)
+            let newCategory = Category()
             newCategory.name = text
-            self.categories.append(newCategory)
-            self.saveData()
+            self.saveData(with: newCategory)
+            
             self.tableView.reloadData()
         }
         alert.addAction(action)
@@ -53,21 +55,19 @@ class CategoryViewController: UITableViewController {
 //MARK: - Data Manipulation Methods
 
 extension CategoryViewController {
-    func saveData() {
+    func saveData(with category: Category) {
         do {
-            try K.context.save()
+            try realm.write {
+                realm.add(category)
+            }
         } catch {
             print("Error saving category context: \(error)")
         }
     }
     
     func loadData() {
-        let request: NSFetchRequest<Category> = Category.fetchRequest()
-        do {
-            categories = try K.context.fetch(request)
-        } catch {
-            print("Error fetching category: \(error)")
-        }
+        categories = realm.objects(Category.self)
+        tableView.reloadData()
     }
 }
 
@@ -75,11 +75,11 @@ extension CategoryViewController {
 
 extension CategoryViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return categories?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifiers.categoryIdentifier, for: indexPath)
-        cell.textLabel?.text = categories[indexPath.row].name
+        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
         return cell
     }
 }
@@ -95,6 +95,6 @@ extension CategoryViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else {
             return
         }
-        destinationVC.selectedCategory = categories[indexPath.row]
+        destinationVC.selectedCategory = categories?[indexPath.row]
     }
 }

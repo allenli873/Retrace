@@ -7,14 +7,14 @@
 //
 
 import UIKit
-import CoreData
+import RealmSwift
 
 //MARK: - Item View Controller: Tabulates Items
 
 class ItemViewController: UITableViewController {
     
-    var items = [Item]()
-    
+    var items: Results<Item>?
+    let realm = try! Realm()
     // from category view controller: loads items into items array
     var selectedCategory: Category? {
         didSet {
@@ -25,9 +25,9 @@ class ItemViewController: UITableViewController {
     // incoming item from ImageViewController
     var incomingItem: Item? {
         didSet {
-            incomingItem!.parentCategory = selectedCategory
-            items.append(incomingItem!)
-            self.saveItems()
+//            incomingItem!.parentCategory = selectedCategory
+//            items.append(incomingItem!)
+            self.saveItems(with: incomingItem!)
         }
     }
     
@@ -43,12 +43,12 @@ class ItemViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifiers.itemIdentifier, for: indexPath)
-        cell.textLabel?.text = items[indexPath.row].name
+        cell.textLabel?.text = items?[indexPath.row].name ?? "No Items Added"
         return cell
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return items.count
+        return items?.count ?? 1
     }
 
 }
@@ -72,7 +72,7 @@ extension ItemViewController {
                 print("error: no index path found")
                 return
             }
-            destinationVC.incomingItem = items[indexPath.row]
+            destinationVC.incomingItem = items?[indexPath.row]
         }
     }
 }
@@ -80,31 +80,20 @@ extension ItemViewController {
 //MARK: - Updating Data
 
 extension ItemViewController {
-    func saveItems() {
+    func saveItems(with item: Item) {
         do {
-            try K.context.save()
+            try realm.write {
+                selectedCategory?.items.append(incomingItem!)
+                realm.add(item)
+            }
         } catch {
-            print("Error saving context, \(error)")
+            print("Error saving item, \(error)")
         }
         tableView.reloadData()
     }
 
-    func loadItems(with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
-        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
-        var predicates = [NSPredicate]()
-        if predicate != nil {
-            predicates.append(predicate!)
-        }
-
-        predicates.append(NSPredicate(format: "parentCategory.name MATCHES %@", selectedCategory!.name!))
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        request.predicate = compoundPredicate
-        
-        do {
-            items = try K.context.fetch(request)
-        } catch {
-            print("Error fetching data from context \(error)")
-        }
+    func loadItems() {
+        items = selectedCategory?.items.sorted(byKeyPath: "name", ascending: true)
     }
 }
 
@@ -117,16 +106,16 @@ extension ItemViewController: UISearchBarDelegate {
         }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
-        
-        var predicate: NSPredicate? = nil
-        
-        if searchText.count != 0 {
-            predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
-        }
-        
-        loadItems(with: request, predicate: predicate)
-        
-        tableView.reloadData()
+//        let request: NSFetchRequest<Item> = Item.fetchRequest()
+//
+//        var predicate: NSPredicate? = nil
+//
+//        if searchText.count != 0 {
+//            predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+//        }
+//
+//        loadItems(with: request, predicate: predicate)
+//
+//        tableView.reloadData()
     }
 }
