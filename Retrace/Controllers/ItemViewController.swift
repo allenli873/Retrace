@@ -106,16 +106,12 @@ extension ItemViewController: UISearchBarDelegate {
         }
     }
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-//        let request: NSFetchRequest<Item> = Item.fetchRequest()
-//
-//        var predicate: NSPredicate? = nil
-//
-//        if searchText.count != 0 {
-//            predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
-//        }
-//
-//        loadItems(with: request, predicate: predicate)
-//
-//        tableView.reloadData()
+        let predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+        if searchBar.text!.count != 0 {
+            self.items = self.items?.filter(predicate).sorted(byKeyPath: "name", ascending: true)
+        } else {
+            loadItems()
+        }
+        tableView.reloadData()
     }
 }
