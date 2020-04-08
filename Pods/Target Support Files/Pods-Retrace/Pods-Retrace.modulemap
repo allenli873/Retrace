@@ -1,0 +1,6 @@
+framework module Pods_Retrace {
+  umbrella header "Pods-Retrace-umbrella.h"
+
+  export *
+  module * { export * }
+}

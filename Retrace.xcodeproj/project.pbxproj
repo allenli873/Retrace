@@ -20,9 +20,12 @@
 		8BC68A722437BF2500BA7C63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8BC68A702437BF2500BA7C63 /* LaunchScreen.storyboard */; };
 		8BD7C03F2437D640006FDC54 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C03E2437D640006FDC54 /* Constants.swift */; };
 		8BD7C0412437DA87006FDC54 /* ItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BD7C0402437DA87006FDC54 /* ItemViewController.swift */; };
+		F1A799B9699013F332B0A961 /* Pods_Retrace.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4F3D29A0690F6A80C1885D8 /* Pods_Retrace.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		28A489020B235BEDE19D19AB /* Pods-Retrace.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Retrace.release.xcconfig"; path = "Target Support Files/Pods-Retrace/Pods-Retrace.release.xcconfig"; sourceTree = "<group>"; };
+		6FD1BA474A0AE8C583A068E7 /* Pods-Retrace.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Retrace.debug.xcconfig"; path = "Target Support Files/Pods-Retrace/Pods-Retrace.debug.xcconfig"; sourceTree = "<group>"; };
 		8B21438D2437E11C00A88066 /* MakerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakerViewController.swift; sourceTree = "<group>"; };
 		8B68983D2438124C0030B9D1 /* CustomizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomizationViewController.swift; sourceTree = "<group>"; };
 		8B68983F2438313B0030B9D1 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -38,6 +41,7 @@
 		8BC68A732437BF2500BA7C63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8BD7C03E2437D640006FDC54 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8BD7C0402437DA87006FDC54 /* ItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewController.swift; sourceTree = "<group>"; };
+		D4F3D29A0690F6A80C1885D8 /* Pods_Retrace.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Retrace.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,17 +49,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1A799B9699013F332B0A961 /* Pods_Retrace.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2B40A587A3B65E6804EFD69A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6FD1BA474A0AE8C583A068E7 /* Pods-Retrace.debug.xcconfig */,
+				28A489020B235BEDE19D19AB /* Pods-Retrace.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		8BC68A562437BF2500BA7C63 = {
 			isa = PBXGroup;
 			children = (
 				8BC68A612437BF2500BA7C63 /* Retrace */,
 				8BC68A602437BF2500BA7C63 /* Products */,
+				2B40A587A3B65E6804EFD69A /* Pods */,
+				C1875E6AD80A93952A7CB5A0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -120,6 +137,14 @@
 			path = Supporting;
 			sourceTree = "<group>";
 		};
+		C1875E6AD80A93952A7CB5A0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4F3D29A0690F6A80C1885D8 /* Pods_Retrace.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -127,9 +152,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8BC68A762437BF2500BA7C63 /* Build configuration list for PBXNativeTarget "Retrace" */;
 			buildPhases = (
+				D7FE22BE40458BC6812C693C /* [CP] Check Pods Manifest.lock */,
 				8BC68A5B2437BF2500BA7C63 /* Sources */,
 				8BC68A5C2437BF2500BA7C63 /* Frameworks */,
 				8BC68A5D2437BF2500BA7C63 /* Resources */,
+				9AB927B288EB5D5180B0138F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -185,6 +212,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9AB927B288EB5D5180B0138F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Retrace/Pods-Retrace-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Retrace/Pods-Retrace-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Retrace/Pods-Retrace-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7FE22BE40458BC6812C693C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Retrace-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8BC68A5B2437BF2500BA7C63 /* Sources */ = {
@@ -342,6 +411,7 @@
 		};
 		8BC68A772437BF2500BA7C63 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6FD1BA474A0AE8C583A068E7 /* Pods-Retrace.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -360,6 +430,7 @@
 		};
 		8BC68A782437BF2500BA7C63 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 28A489020B235BEDE19D19AB /* Pods-Retrace.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
