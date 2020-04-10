@@ -52,22 +52,11 @@ extension ItemViewController: UIImagePickerControllerDelegate, UINavigationContr
         }
         performSegue(withIdentifier: K.SegueIdentifiers.customizerSegue, sender: self)
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Segue to where we can view the image
-        if segue.identifier == K.SegueIdentifiers.imageSegue {
-            let destinationVC = segue.destination as! ImageViewController
-            guard let indexPath = tableView.indexPathForSelectedRow else {
-                print("error: no index path found")
-                return
-            }
-            destinationVC.incomingItem = items?[indexPath.row]
-        } else {
-            // Segue to the customizer
-            let destinationVC = segue.destination as! CustomizationViewController
-            let currImageCount = defaults.integer(forKey: K.imageCountKey)
-            destinationVC.imageName = "image_\(currImageCount).jpeg"
-            defaults.set(currImageCount + 1, forKey: K.imageCountKey)
-        }
+    func prepareCustomizerVC(for segue: UIStoryboardSegue, _ sender: Any?) {
+        let destinationVC = segue.destination as! CustomizationViewController
+        let currImageCount = defaults.integer(forKey: K.imageCountKey)
+        destinationVC.imageName = "image_\(currImageCount).jpeg"
+        defaults.set(currImageCount + 1, forKey: K.imageCountKey)
     }
+    
 }

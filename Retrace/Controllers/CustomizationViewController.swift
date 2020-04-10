@@ -22,7 +22,7 @@ class CustomizationViewController: UIViewController {
         getImage(with: imageName)
     }
     
-    //MARK: - Getting the just taken image from the documents folder
+    //MARK: - Retrieving Image
     
     func getImage(with imageName: String) {
         let fileManager = FileManager.default
@@ -37,7 +37,7 @@ class CustomizationViewController: UIViewController {
         }
     }
     
-    //MARK: - Segue from when item is saved
+    //MARK: - Save Button Pressed
     
     @IBAction func saveItemPressed(_ sender: UIButton) {
         if textField.text?.count == 0 {

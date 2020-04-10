@@ -11,13 +11,15 @@ import UIKit
 class ImageViewController: UIViewController {
     
     @IBOutlet weak var displayImage: UIImageView!
-    @IBOutlet weak var itemLabel: UILabel!
     var incomingItem: Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        itemLabel.text = incomingItem?.name
         getImage(with: incomingItem!.imageName)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationItem.title = incomingItem?.name
     }
     
     //MARK: - Image Loading

@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 //MARK: - Category View Controller: Tabulates the categories
 
@@ -21,6 +22,7 @@ class CategoryViewController: SwipeTableViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loadData()
+        
     }
     
     //MARK: - Add Button Pressed: Segue to Item View Controller
@@ -32,7 +34,7 @@ class CategoryViewController: SwipeTableViewController {
             alertTextField.placeholder = "Create New Category"
             textField = alertTextField
         }
-        let action = UIAlertAction(title: "Add Category", style: .default) { (alertAction) in
+        let action = UIAlertAction(title: "Add", style: .default) { (alertAction) in
             let text = textField.text!
             // do nothing if user does not enter text
             if text == "" {
@@ -41,11 +43,14 @@ class CategoryViewController: SwipeTableViewController {
             
             let newCategory = Category()
             newCategory.name = text
+            newCategory.hexValue = UIColor.randomFlat().hexValue()
             self.saveData(with: newCategory)
             
             self.tableView.reloadData()
         }
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alert.addAction(action)
+        alert.addAction(cancel)
         present(alert, animated: true, completion: nil)
         
     }
@@ -93,6 +98,11 @@ extension CategoryViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
+        if let hex = categories?[indexPath.row].hexValue {
+            let bgColor = UIColor.init(hexString: hex)!
+            cell.backgroundColor = bgColor
+            cell.textLabel?.textColor = ContrastColorOf(bgColor, returnFlat: true)
+        }
         return cell
     }
 }
@@ -102,6 +112,7 @@ extension CategoryViewController {
 extension CategoryViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: K.SegueIdentifiers.itemsSegue, sender: self)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let destinationVC = segue.destination as! ItemViewController
