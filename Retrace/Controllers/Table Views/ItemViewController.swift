@@ -14,6 +14,8 @@ import RealmSwift
 class ItemViewController: SwipeTableViewController {
     var items: Results<Item>?
     let realm = try! Realm()
+    let defaults = UserDefaults.standard
+    var imagePickerController: UIImagePickerController!
     // from category view controller: loads items into items variable
     var selectedCategory: Category? {
         didSet {
@@ -31,10 +33,13 @@ class ItemViewController: SwipeTableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.keyboardDismissMode = .onDrag
+        if defaults.object(forKey: K.imageCountKey) == nil {
+            defaults.set(0, forKey: K.imageCountKey)
+        }
     }
 
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: K.SegueIdentifiers.makerSegue, sender: self)
+        photoTaking()
     }
     // MARK: - Table View Data Source Methods
 
@@ -55,22 +60,6 @@ class ItemViewController: SwipeTableViewController {
 extension ItemViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         performSegue(withIdentifier: K.SegueIdentifiers.imageSegue, sender: self)
-    }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // currently not preparing anything for the item segue
-        if segue.identifier == K.SegueIdentifiers.makerSegue {
-            return
-        }
-        
-        // Segue to where we can view the image
-        if segue.identifier == K.SegueIdentifiers.imageSegue {
-            let destinationVC = segue.destination as! ImageViewController
-            guard let indexPath = tableView.indexPathForSelectedRow else {
-                print("error: no index path found")
-                return
-            }
-            destinationVC.incomingItem = items?[indexPath.row]
-        }
     }
 }
 

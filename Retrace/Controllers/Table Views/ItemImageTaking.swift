@@ -8,22 +8,11 @@
 
 import UIKit
 
-class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    @IBOutlet weak var imageView: UIImageView!
-    var imagePickerController: UIImagePickerController!
-    var imageName: String!
-    let defaults = UserDefaults.standard
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        if defaults.object(forKey: K.imageCountKey) == nil {
-            defaults.set(0, forKey: K.imageCountKey)
-        }
-    }
+extension ItemViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     //MARK: - Image Taking
     
-    @IBAction func onPhotoButton(_ sender: UIButton) {
+    func photoTaking() {
         imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = .camera
@@ -32,23 +21,19 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePickerController.dismiss(animated: true, completion: nil)
-        imageView.image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage
+        saveImage(with: info[UIImagePickerController.InfoKey.originalImage] as? UIImage)
     }
     
     //MARK: - Image Saving
     
-    @IBAction func onSaveButton(_ sender: UIButton) {
+    func saveImage(with image: UIImage?) {
         let currImageCount = defaults.integer(forKey: K.imageCountKey)
-        imageName = "image_\(currImageCount).png"
-        saveImage(with: imageName)
-        defaults.set(currImageCount + 1, forKey: K.imageCountKey)
-    }
-    
-    func saveImage(with imageName: String) {
+        let imageName = "image_\(currImageCount).png"
+        
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileManager = FileManager.default
         let fileURL = documentsDirectory.appendingPathComponent(imageName)
-        guard let data = imageView.image?.pngData() else { return }
+        guard let data = image?.pngData() else { return }
         
         if fileManager.fileExists(atPath: fileURL.path) {
             do {
@@ -65,12 +50,24 @@ class MakerViewController: UIViewController, UIImagePickerControllerDelegate, UI
             print("Error saving file, \(error)")
             return
         }
-        
         performSegue(withIdentifier: K.SegueIdentifiers.customizerSegue, sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let destinationVC = segue.destination as! CustomizationViewController
-        destinationVC.imageName = imageName
+        // Segue to where we can view the image
+        if segue.identifier == K.SegueIdentifiers.imageSegue {
+            let destinationVC = segue.destination as! ImageViewController
+            guard let indexPath = tableView.indexPathForSelectedRow else {
+                print("error: no index path found")
+                return
+            }
+            destinationVC.incomingItem = items?[indexPath.row]
+        } else {
+            // Segue to the customizer
+            let destinationVC = segue.destination as! CustomizationViewController
+            let currImageCount = defaults.integer(forKey: K.imageCountKey)
+            destinationVC.imageName = "image_\(currImageCount).png"
+            defaults.set(currImageCount + 1, forKey: K.imageCountKey)
+        }
     }
 }
