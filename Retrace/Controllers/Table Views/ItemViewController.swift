@@ -77,12 +77,14 @@ class ItemViewController: SwipeTableViewController {
             appearance.configureWithOpaqueBackground()
             appearance.backgroundColor = color
             appearance.largeTitleTextAttributes = [.foregroundColor: contrastColor]
+            appearance.titleTextAttributes = [.foregroundColor: contrastColor]
             navBar.standardAppearance = appearance
             navBar.scrollEdgeAppearance = appearance
             navBar.compactAppearance = appearance
         } else {
             navBar.barTintColor = color
             navBar.largeTitleTextAttributes = [.foregroundColor: contrastColor]
+            navBar.titleTextAttributes = [.foregroundColor: contrastColor]
         }
         navBar.tintColor = contrastColor
         addButton.tintColor = contrastColor
