@@ -8,4 +8,5 @@ target 'Retrace' do
   # Pods for Retrace
   pod 'RealmSwift'
   pod 'IQKeyboardManagerSwift'
+  pod 'SwipeCellKit'
 end

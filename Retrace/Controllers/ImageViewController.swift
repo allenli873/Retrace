@@ -11,11 +11,13 @@ import UIKit
 class ImageViewController: UIViewController {
     
     @IBOutlet weak var displayImage: UIImageView!
-    var incomingItem: Item!
+    @IBOutlet weak var itemLabel: UILabel!
+    var incomingItem: Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getImage(with: incomingItem.imageName)
+        itemLabel.text = incomingItem?.name
+        getImage(with: incomingItem!.imageName)
     }
     
     //MARK: - Image Loading

@@ -11,11 +11,10 @@ import RealmSwift
 
 //MARK: - Item View Controller: Tabulates Items
 
-class ItemViewController: UITableViewController {
-    
+class ItemViewController: SwipeTableViewController {
     var items: Results<Item>?
     let realm = try! Realm()
-    // from category view controller: loads items into items array
+    // from category view controller: loads items into items variable
     var selectedCategory: Category? {
         didSet {
             loadItems()
@@ -25,9 +24,7 @@ class ItemViewController: UITableViewController {
     // incoming item from ImageViewController
     var incomingItem: Item? {
         didSet {
-//            incomingItem!.parentCategory = selectedCategory
-//            items.append(incomingItem!)
-            self.saveItems(with: incomingItem!)
+            self.saveItem(with: incomingItem!)
         }
     }
     
@@ -39,10 +36,10 @@ class ItemViewController: UITableViewController {
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
         performSegue(withIdentifier: K.SegueIdentifiers.makerSegue, sender: self)
     }
-    // MARK: - Table view data source
+    // MARK: - Table View Data Source Methods
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifiers.itemIdentifier, for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = items?[indexPath.row].name ?? "No Items Added"
         return cell
     }
@@ -77,10 +74,10 @@ extension ItemViewController {
     }
 }
 
-//MARK: - Updating Data
+//MARK: - Data Manipulation Methods
 
 extension ItemViewController {
-    func saveItems(with item: Item) {
+    func saveItem(with item: Item) {
         do {
             try realm.write {
                 selectedCategory?.items.append(incomingItem!)
@@ -91,7 +88,20 @@ extension ItemViewController {
         }
         tableView.reloadData()
     }
-
+    
+    func deleteData(at indexPath: IndexPath) {
+        guard let item = items?[indexPath.row] else {
+            return
+        }
+        do {
+            try realm.write {
+               realm.delete(item)
+            }
+        } catch {
+            print("Error deleting item: \(error)")
+        }
+    }
+    
     func loadItems() {
         items = selectedCategory?.items.sorted(byKeyPath: "name", ascending: true)
     }

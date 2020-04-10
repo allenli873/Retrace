@@ -11,8 +11,8 @@ import RealmSwift
 
 //MARK: - Category View Controller: Tabulates the categories
 
-class CategoryViewController: UITableViewController {
-
+class CategoryViewController: SwipeTableViewController {
+    
     let realm = try! Realm()
     
     var categories: Results<Category>?
@@ -61,7 +61,20 @@ extension CategoryViewController {
                 realm.add(category)
             }
         } catch {
-            print("Error saving category context: \(error)")
+            print("Error saving category: \(error)")
+        }
+    }
+    
+    func deleteData(at indexPath: IndexPath) {
+        guard let category = categories?[indexPath.row] else {
+            return
+        }
+        do {
+            try realm.write {
+               realm.delete(category)
+            }
+        } catch {
+            print("Error deleting category: \(error)")
         }
     }
     
@@ -78,7 +91,7 @@ extension CategoryViewController {
         return categories?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: K.CellIdentifiers.categoryIdentifier, for: indexPath)
+        let cell = super.tableView(tableView, cellForRowAt: indexPath)
         cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
         return cell
     }

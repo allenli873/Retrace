@@ -9,10 +9,7 @@
 import UIKit
 
 struct K {
-    struct CellIdentifiers {
-        static let categoryIdentifier = "categoryCell"
-        static let itemIdentifier = "itemCell"
-    }
+    static let cellIdentifier = "swipeableCell"
     struct SegueIdentifiers {
         static let itemsSegue = "goToItems"
         static let makerSegue = "goToMaker"
