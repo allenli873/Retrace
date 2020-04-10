@@ -30,7 +30,6 @@ class ImageViewController: UIViewController {
         }
         if fileManager.fileExists(atPath: path) {
             displayImage.image = UIImage(contentsOfFile: path)
-            displayImage.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
         } else {
             print("Error: no image found")
         }

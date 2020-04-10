@@ -28,12 +28,12 @@ extension ItemViewController: UIImagePickerControllerDelegate, UINavigationContr
     
     func saveImage(with image: UIImage?) {
         let currImageCount = defaults.integer(forKey: K.imageCountKey)
-        let imageName = "image_\(currImageCount).png"
+        let imageName = "image_\(currImageCount).jpeg"
         
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         let fileManager = FileManager.default
         let fileURL = documentsDirectory.appendingPathComponent(imageName)
-        guard let data = image?.pngData() else { return }
+        guard let data = image?.jpegData(compressionQuality: 1.0) else { return }
         
         if fileManager.fileExists(atPath: fileURL.path) {
             do {
@@ -66,7 +66,7 @@ extension ItemViewController: UIImagePickerControllerDelegate, UINavigationContr
             // Segue to the customizer
             let destinationVC = segue.destination as! CustomizationViewController
             let currImageCount = defaults.integer(forKey: K.imageCountKey)
-            destinationVC.imageName = "image_\(currImageCount).png"
+            destinationVC.imageName = "image_\(currImageCount).jpeg"
             defaults.set(currImageCount + 1, forKey: K.imageCountKey)
         }
     }

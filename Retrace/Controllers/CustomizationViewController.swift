@@ -32,7 +32,6 @@ class CustomizationViewController: UIViewController {
         }
         if fileManager.fileExists(atPath: path) {
             imageView.image = UIImage(contentsOfFile: path)
-            imageView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi/2))
         } else {
             print("Error: no image found")
         }
