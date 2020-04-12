@@ -8,12 +8,14 @@ PODS:
   - Realm/Headers (4.4.0)
   - RealmSwift (4.4.0):
     - Realm (= 4.4.0)
+  - ShadowView (1.4.3)
   - SwipeCellKit (2.7.1)
 
 DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/wowansm/Chameleon.git`, branch `swift5`)
   - IQKeyboardManagerSwift
   - RealmSwift
+  - ShadowView
   - SwipeCellKit
 
 SPEC REPOS:
@@ -21,6 +23,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - Realm
     - RealmSwift
+    - ShadowView
     - SwipeCellKit
 
 EXTERNAL SOURCES:
@@ -38,8 +41,9 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: 0fb93310284665245591f50f7a5e38de615960b7
   Realm: e125f464884cda953ebefe70c671b75b03b81b9b
   RealmSwift: 33656a42bd300959a081fc13347376bc478071af
+  ShadowView: d2d92fd2706b3f6a182be2147149db0b1cf7700d
   SwipeCellKit: 3972254a826da74609926daf59b08d6c72e619ea
 
-PODFILE CHECKSUM: 4433602405264488305153e7e6d61fc57e9b2ade
+PODFILE CHECKSUM: 1dca6d647f864a9686b7a1c34f4dca082f0a672f
 
 COCOAPODS: 1.9.1

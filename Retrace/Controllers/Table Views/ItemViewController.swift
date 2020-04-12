@@ -9,6 +9,14 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SwipeCellKit
+import ShadowView
+
+class ItemTableViewCell: SwipeTableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
+}
+
 //MARK: - Item View Controller: Tabulates Items
 
 class ItemViewController: SwipeTableViewController {

@@ -9,6 +9,16 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SwipeCellKit
+import ShadowView
+
+class CategoryTableViewCell: SwipeTableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var shadowView: ShadowView!
+    
+}
 
 //MARK: - Category View Controller: Tabulates the categories
 
@@ -96,13 +106,31 @@ extension CategoryViewController {
         return categories?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
+        var cell = super.tableView(tableView, cellForRowAt: indexPath) as! CategoryTableViewCell
+        let currentCategory = categories?[indexPath.row]
+        cell.nameLabel.text = currentCategory?.name ?? "No Categories Added Yet"
+        cell.countLabel.text = "\(currentCategory?.items.count ?? 0)"
         if let hex = categories?[indexPath.row].hexValue {
             let bgColor = UIColor.init(hexString: hex)!
-            cell.backgroundColor = bgColor
-            cell.textLabel?.textColor = ContrastColorOf(bgColor, returnFlat: true)
+            cell = cellDesign(color: bgColor, design: cell)
+            
         }
+        return cell
+    }
+    func cellDesign(color bgColor: UIColor, design cell: CategoryTableViewCell) -> CategoryTableViewCell {
+        cell.bgView.backgroundColor = bgColor
+        cell.bgView.layer.cornerRadius = 10
+        cell.bgView.layer.masksToBounds = true
+        
+        cell.shadowView.backgroundColor = bgColor
+        cell.shadowView.layer.cornerRadius = 10
+        cell.shadowView.layer.masksToBounds = true
+        cell.shadowView.shadowScale = 1.05
+        
+        cell.countLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
+        cell.nameLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
+        
+        cell.selectionStyle = .none
         return cell
     }
 }
