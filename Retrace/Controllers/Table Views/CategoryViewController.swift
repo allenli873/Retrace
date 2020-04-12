@@ -125,7 +125,7 @@ extension CategoryViewController {
         cell.shadowView.backgroundColor = bgColor
         cell.shadowView.layer.cornerRadius = 10
         cell.shadowView.layer.masksToBounds = true
-        cell.shadowView.shadowScale = 1.05
+        cell.shadowView.shadowScale = 0.88
         
         cell.countLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
         cell.nameLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
