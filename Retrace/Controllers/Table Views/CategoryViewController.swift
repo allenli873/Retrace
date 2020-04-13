@@ -11,6 +11,7 @@ import RealmSwift
 import ChameleonFramework
 import SwipeCellKit
 import ShadowView
+import Floaty
 
 class CategoryTableViewCell: SwipeTableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
@@ -28,11 +29,25 @@ class CategoryViewController: SwipeTableViewController {
     
     var categories: Results<Category>?
     
+//    var floaty = Floaty()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loadData()
-        
+//        self.view.addSubview(floaty)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        floaty.addItem(title: "Add New Category") { item in
+//
+//        }
+//        floaty.paddingY = CGFloat(K.cellHeight) + getBarHeight()
+    }
+    
+    func getBarHeight() -> CGFloat {
+        return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+        (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }
     
     //MARK: - Add Button Pressed: Segue to Item View Controller
@@ -125,7 +140,7 @@ extension CategoryViewController {
         cell.shadowView.backgroundColor = bgColor
         cell.shadowView.layer.cornerRadius = 10
         cell.shadowView.layer.masksToBounds = true
-        cell.shadowView.shadowScale = 0.88
+        cell.shadowView.shadowScale = 0.95
         
         cell.countLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
         cell.nameLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)

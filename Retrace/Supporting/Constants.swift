@@ -9,6 +9,7 @@
 import UIKit
 
 struct K {
+    static let cellHeight = 65
     static let cellIdentifier = "swipeableCell"
     struct SegueIdentifiers {
         static let itemsSegue = "goToItems"
