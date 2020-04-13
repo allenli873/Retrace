@@ -9,6 +9,17 @@
 import UIKit
 import RealmSwift
 import ChameleonFramework
+import SwipeCellKit
+import ShadowView
+import Floaty
+
+class CategoryTableViewCell: SwipeTableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var bgView: UIView!
+    @IBOutlet weak var shadowView: ShadowView!
+    
+}
 
 //MARK: - Category View Controller: Tabulates the categories
 
@@ -18,11 +29,25 @@ class CategoryViewController: SwipeTableViewController {
     
     var categories: Results<Category>?
     
+//    var floaty = Floaty()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         loadData()
-        
+//        self.view.addSubview(floaty)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        floaty.addItem(title: "Add New Category") { item in
+//
+//        }
+//        floaty.paddingY = CGFloat(K.cellHeight) + getBarHeight()
+    }
+    
+    func getBarHeight() -> CGFloat {
+        return (view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0.0) +
+        (self.navigationController?.navigationBar.frame.height ?? 0.0)
     }
     
     //MARK: - Add Button Pressed: Segue to Item View Controller
@@ -96,13 +121,31 @@ extension CategoryViewController {
         return categories?.count ?? 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = super.tableView(tableView, cellForRowAt: indexPath)
-        cell.textLabel?.text = categories?[indexPath.row].name ?? "No Categories Added Yet"
+        var cell = super.tableView(tableView, cellForRowAt: indexPath) as! CategoryTableViewCell
+        let currentCategory = categories?[indexPath.row]
+        cell.nameLabel.text = currentCategory?.name ?? "No Categories Added Yet"
+        cell.countLabel.text = "\(currentCategory?.items.count ?? 0)"
         if let hex = categories?[indexPath.row].hexValue {
             let bgColor = UIColor.init(hexString: hex)!
-            cell.backgroundColor = bgColor
-            cell.textLabel?.textColor = ContrastColorOf(bgColor, returnFlat: true)
+            cell = cellDesign(color: bgColor, design: cell)
+            
         }
+        return cell
+    }
+    func cellDesign(color bgColor: UIColor, design cell: CategoryTableViewCell) -> CategoryTableViewCell {
+        cell.bgView.backgroundColor = bgColor
+        cell.bgView.layer.cornerRadius = 10
+        cell.bgView.layer.masksToBounds = true
+        
+        cell.shadowView.backgroundColor = bgColor
+        cell.shadowView.layer.cornerRadius = 10
+        cell.shadowView.layer.masksToBounds = true
+        cell.shadowView.shadowScale = 0.95
+        
+        cell.countLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
+        cell.nameLabel.textColor = ContrastColorOf(bgColor, returnFlat: true)
+        
+        cell.selectionStyle = .none
         return cell
     }
 }

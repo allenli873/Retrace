@@ -10,4 +10,6 @@ target 'Retrace' do
   pod 'IQKeyboardManagerSwift'
   pod 'SwipeCellKit'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon.git', :branch => 'swift5'
+  pod 'ShadowView'
+  pod 'Floaty', '~> 4.2.0'
 end
