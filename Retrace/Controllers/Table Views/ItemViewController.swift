@@ -152,6 +152,8 @@ extension ItemViewController {
         } catch {
             print("Error saving item, \(error)")
         }
+        let categoryVC = self.navigationController?.viewControllers[0] as! CategoryViewController
+        categoryVC.tableView.reloadData()
         tableView.reloadData()
     }
     
