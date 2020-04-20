@@ -1,5 +1,5 @@
 # Retrace
-An app that allows users to catalog their items. Inspired by the Todo app Clear.
+An app that allows users to catalog their items, and "Retrace" their steps to it. Inspired by the Todo app Clear.
 
 ## Screenshots
 
@@ -14,4 +14,4 @@ An app that allows users to catalog their items. Inspired by the Todo app Clear.
 
 - UI Improvements (have color carry over to item)
 - Location Data
-- Maybe some ARKit features?
+- ARKit + Location Data to represent where the object is through walls
