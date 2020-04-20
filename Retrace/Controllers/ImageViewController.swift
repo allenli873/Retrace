@@ -7,14 +7,32 @@
 //
 
 import UIKit
+import MapKit
 
 class ImageViewController: UIViewController {
     
     @IBOutlet weak var displayImage: UIImageView!
+    @IBOutlet weak var locationMapView: MKMapView!
     var incomingItem: Item?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        guard let item = incomingItem else {
+            fatalError("incomingItem is nil")
+        }
+        let locValue = CLLocationCoordinate2D(latitude: item.latitude, longitude: item.longitude)
+        
+        locationMapView.mapType = MKMapType.standard
+        let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
+        print("\(item.latitude), \(item.longitude)")
+        let region = MKCoordinateRegion(center: locValue, span: span)
+        locationMapView.setRegion(region, animated: true)
+        
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = locValue
+        annotation.title = item.name
+        locationMapView.addAnnotation(annotation)
+        
         getImage(with: incomingItem!.imageName)
     }
     

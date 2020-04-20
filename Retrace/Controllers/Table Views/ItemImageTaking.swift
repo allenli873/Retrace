@@ -58,5 +58,4 @@ extension ItemViewController: UIImagePickerControllerDelegate, UINavigationContr
         destinationVC.imageName = "image_\(currImageCount).jpeg"
         defaults.set(currImageCount + 1, forKey: K.imageCountKey)
     }
-    
 }
