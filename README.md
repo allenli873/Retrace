@@ -10,8 +10,6 @@ An app that allows users to catalog their items, and "Retrace" their steps to it
 <img src="/Screenshots/item_pic.PNG"
 	title="Item Picture" width="200" height="440" />
 
-### Features to Implement
+### Features to Implement in the future?
 
-- UI Improvements (have color carry over to item)
-- Location Data
 - ARKit + Location Data to represent where the object is through walls
